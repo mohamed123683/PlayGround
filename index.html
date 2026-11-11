@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#071b26" />
+  <title>Wildbound — Open World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js"}}
+  </script>
+  <script type="module" src="game.js"></script>
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="world"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <button class="brand" id="home-button" aria-label="Open menu"><span class="brand-mark">W</span><span>WILDBOUND</span></button>
+      <div class="top-center"><span class="weather-dot"></span><span id="weather-label">CLEAR SKIES</span><i></i><span id="clock-label">08:42 AM</span></div>
+      <button class="icon-btn map-toggle" id="map-toggle" aria-label="Toggle map">⌖</button>
+    </header>
+    <section class="hud-left" aria-live="polite">
+      <div class="quest-card"><div class="eyebrow"><span class="eyebrow-dot"></span><span id="mode-label">FREE ROAM</span></div><div class="quest-title" id="quest-title">The wild is yours.</div><div class="quest-sub" id="quest-sub">Follow the trail. Find your own path.</div><div class="progress-line"><span id="quest-progress"></span></div><div class="quest-foot"><span id="progress-count">0 / 8 WAYFINDERS</span><span id="quest-percent">0%</span></div></div>
+      <div class="location-card"><span class="pin-icon">✦</span><div><div class="location-name" id="location-name">SUNMEADOW</div><div class="location-detail" id="location-detail">The open country</div></div></div>
+    </section>
+    <section class="hud-right">
+      <div class="minimap-frame"><canvas id="minimap" width="176" height="176"></canvas><div class="map-compass">N</div><div class="map-label">FIELD MAP <span>＋</span></div></div>
+      <div class="stats-row"><div class="stat-chip"><span class="stat-icon">✧</span><span id="shard-count">0</span><small>SHARDS</small></div><div class="stat-chip"><span class="stat-icon">◷</span><span id="timer-display">00:00</span><small>TIME</small></div></div>
+    </section>
+    <div class="toast" id="toast"><span>✦</span><span id="toast-text">Waypoint discovered</span></div>
+    <div class="center-prompt" id="center-prompt"></div>
+    <div class="bottom-hint" id="bottom-hint"><span class="keycap">WASD</span> MOVE <span class="hint-divider">·</span> <span class="keycap">SPACE</span> JUMP <span class="hint-divider">·</span> <span class="keycap">SHIFT</span> SPRINT</div>
+    <div class="touch-controls" id="touch-controls">
+      <div class="joystick" id="joystick"><div class="joy-ring"></div><div class="joy-knob" id="joy-knob"></div></div>
+      <div class="touch-actions"><button class="action-btn" id="jump-button"><span>↑</span><small>JUMP</small></button><button class="action-btn sprint-btn" id="sprint-button"><span>»</span><small>RUN</small></button></div>
+    </div>
+    <div class="overlay" id="menu-overlay">
+      <div class="menu-backdrop"></div>
+      <div class="menu-content">
+        <div class="menu-kicker"><span class="kicker-line"></span> YOUR NEXT GREAT ESCAPE <span class="kicker-line"></span></div>
+        <h1>Find your<br><em>wild.</em></h1>
+        <p class="menu-copy">An open world made for getting lost.<br>Wander, wander farther, and see what finds you.</p>
+        <div class="mode-heading"><span>CHOOSE YOUR PACE</span><span class="mode-count">03 MODES</span></div>
+        <div class="mode-list">
+          <button class="mode-card selected" data-mode="explore"><span class="mode-icon">↗</span><span class="mode-text"><strong>Free Roam</strong><small>Take the long way. Every time.</small></span><span class="mode-arrow">↗</span></button>
+          <button class="mode-card" data-mode="trail"><span class="mode-icon">⌁</span><span class="mode-text"><strong>Trail Run</strong><small>Race the clock. Hit every marker.</small></span><span class="mode-arrow">↗</span></button>
+          <button class="mode-card" data-mode="photo"><span class="mode-icon">◉</span><span class="mode-text"><strong>Photo Walk</strong><small>Slow down. The light is lovely.</small></span><span class="mode-arrow">↗</span></button>
+        </div>
+        <button class="play-button" id="play-button"><span>STEP INTO THE WILD</span><span>→</span></button>
+        <div class="menu-footer">A QUIET PLACE TO ROAM <span>•</span> BUILT FOR TOUCH</div>
+      </div>
+      <div class="menu-side-note">42° 18' N &nbsp;·&nbsp; THE EVERGREEN REACH</div>
+    </div>
+    <div class="pause-panel" id="pause-panel"><div class="pause-box"><div class="eyebrow"><span class="eyebrow-dot"></span> PAUSED</div><h2>Take a breath.</h2><p>The wild can wait.</p><button class="play-button" id="resume-button"><span>BACK TO THE WILD</span><span>→</span></button><button class="text-button" id="menu-button">CHANGE MODE</button></div></div>
+    <div class="mode-banner" id="mode-banner"></div>
+    <button class="photo-button" id="photo-button">◉ &nbsp; SAVE A MOMENT</button>
+    <button class="pause-button" id="pause-button" aria-label="Pause game">Ⅱ</button>
+  </main>
+</body>
+</html>
